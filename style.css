@@ -1,0 +1,221 @@
+* {
+    margin: 0;
+    padding: 5px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align: center;
+    color: #254F22;
+}
+
+
+body {
+    margin: 0;
+    padding: 3px;   /* لضمان عدم وجود فراغ أبيض حول الخلفية */
+    position: relative;   /* ضروري لعمل الطبقة الخلفية */
+    direction: rtl;   /* جعل الصفحة بالكامل تبدأ من اليمين لليسار */
+    font-family: 'Harir', sans-serif;
+    overflow-x: hidden;   /* إخفاء أي بروز جانبي قد يحدث بسبب الـ Padding */
+}
+
+
+#bg-image {
+  position: fixed;
+  background-image: url("background.png");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  filter: opacity(0.1);   /* 1.0 تعني صورة كاملة الوضوح، 0.5 تعني شفافة للنصف */
+}
+
+
+.main-header {   /* الحاوية الكبيرة لتكون ثابتة في الأعلى */
+    position: sticky;
+    top: 0;
+    width: 100%;
+    backdrop-filter: blur(10px);   /* تأثير زجاجي */
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 2px 0;
+    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.5)), url("flag.jpg");
+    background-size: cover;   /* تجعل الصورة تغطي مساحة الهيدر بالكامل */
+    background-position: center;   /* توسيط الصورة */
+    background-repeat: no-repeat;
+    backdrop-filter: blur(10px);   /* التأثير الزجاجي الذي وضعتيه سابقاً */
+}
+
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;   /* يوزعهم يمين وسط يسار */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    gap: 15px;   /* المسافة التي تتقلص عند تصغير الشاشة */
+}
+
+
+.header-logo img {   /* تنسيق الشعارات */
+    height: 110px;   /* تحكمي في حجم الشعار من هنا */
+    width: auto;
+    display: block;
+    cursor: pointer;   /* يغير شكل الماوس ليد عند الوقوف على اللوجو */
+    transition: transform 0.3s ease-in-out, height 0.3s ease;   /* هذا السطر يضمن أن التكبير والرجوع يكون انسيابياً جداً */
+}
+
+
+.header-logo img:hover {
+    transform: scale(1.1) !important; 
+}
+
+
+.header-title {   /* تنسيق العنوان في المنتصف */
+    flex: 1;   /* يأخذ المساحة المتاحة ويتمركز */
+    text-align: center;
+    font-family: 'Harir', sans-serif;
+    color: #2c1f21;
+    font-size: 1.5rem;
+    margin: 0;
+    line-height: 1.4;
+}
+
+
+.mobile-break {   /* إخفاء كسر السطر في الشاشات الكبيرة */
+    display: none;
+}
+
+
+@media (max-width: 768px) {   /* --- التنسيق مع تصغير الشاشة (Responsive) --- */
+
+    .header-logo img {
+        height: 100px;   /* تصغير الشعارات في الجوال */
+    }
+    
+    .header-title {
+        font-size: 1.1rem;   /* تصغير الخط قليلاً */
+    }
+
+    .mobile-break {
+        display: block;   /* إظهار كسر السطر ليصبح العنوان على سطرين */
+    }
+    
+    .header-container {
+        gap: 10px;   /* تقريب الشعارات أكثر من بعضها */
+        padding: 0 10px;
+    }
+
+}
+
+
+@media screen and (max-width: 480px) {   /* عندما يكون عرض الشاشة أقل من 480 بكسل (أغلب الجوالات) */
+
+    .header-logo img {   /* هنا نكبر الحجم قليلاً للجوال لكي لا يظهر "صغير مرة" */
+        height: 80px;   /* جربي 80px أو 90px، ستكون واضحة جداً في الجوال */
+        width: auto;
+    }
+    
+    .header-container {   /* تقليل المسافات الجانبية لترك مساحة أكبر للشعارات */
+        padding: 0 5px; 
+        gap: 5px; 
+    }
+
+    .header-title {
+        font-size: 0.9rem;   /* تصغير الخط قليلاً لكي لا يزاحم الشعارات الكبيرة */ 
+    }
+
+}
+
+
+.h1-white {
+    color: white;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+
+.flag1-section {
+    width: 100%;
+    display: flex;          /* الإضافة المطلوبة للتوسيط */
+    align-items: center;    /* الإضافة المطلوبة لجعل النص في الوسط عمودياً */
+    flex-direction: row-reverse; /* عكس الاتجاه لجعل الصورة يساراً والنص يميناً في نظام RTL */
+    overflow: hidden;   /* لضمان احتواء العناصر الطافية داخل القسم */
+}
+
+
+.flag1-img {
+    /* 2. التحكم في حجم الصورة */
+    width: 250px; 
+    height: auto;
+    /* 3. إضافة مسافة بين الكلام والصورة (من جهة اليمين ومن الأسفل) */
+    margin-right: 25px;   /* مسافة بين يمين الصورة وبداية الكلام */
+    margin-bottom: 15px;   /* مسافة لكي لا يلتصق الكلام بالصورة من الأسفل */
+    /* 4. لمسة جمالية (اختياري) */
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    cursor: pointer !important;   /* إجبار الماوس على التغير لشكل اليد */
+    position: relative;   /* لضمان أنها فوق أي طبقات نص مخفية */
+    z-index: 5;   /* رفع طبقة الصورة */
+    display: block;   /* لضمان استجابتها للتنسيقات بشكل صحيح */
+    transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out !important;
+}
+
+
+.flag1-img:hover {
+    transform: scale(1.05) !important;   /* تكبير الصورة بمقدار بسيط (1.1 يعني زيادة 10% عن حجمها) */
+    z-index: 10;
+}
+
+
+.flag1-text {   /* تنسيق النص ليكون مرتباً من الجهتين */
+    flex: 1;
+    text-align: left;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: #254F22;
+}
+
+
+.flag2-section {
+    width: 100%;
+    display: flex;          /* تفعيل نظام التوزيع المرن */
+    align-items: center;    /* الحل السحري: توسيط النص عمودياً مع منتصف الصورة */
+    overflow: hidden;   /* لضمان احتواء العناصر الطافية داخل القسم */
+}
+
+
+.flag2-img {
+    /* 1. جعل الصورة تطفو على اليسار */
+    float: right; 
+    /* 2. التحكم في حجم الصورة */
+    width: 250px; 
+    height: auto;
+    /* 3. إضافة مسافة بين الكلام والصورة (من جهة اليمين ومن الأسفل) */
+    margin-right: 25px;   /* مسافة بين يمين الصورة وبداية الكلام */
+    margin-bottom: 15px;   /* مسافة لكي لا يلتصق الكلام بالصورة من الأسفل */
+    /* 4. لمسة جمالية (اختياري) */
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    cursor: pointer !important;   /* إجبار الماوس على التغير لشكل اليد */
+    position: relative;   /* لضمان أنها فوق أي طبقات نص مخفية */
+    z-index: 5;   /* رفع طبقة الصورة */
+    display: block;   /* لضمان استجابتها للتنسيقات بشكل صحيح */
+    transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out !important;
+}
+
+
+.flag2-img:hover {
+    transform: scale(1.05) !important;   /* تكبير الصورة بمقدار بسيط (1.1 يعني زيادة 10% عن حجمها) */
+    z-index: 10;
+}
+
+
+.flag2-text {   /* تنسيق النص ليكون مرتباً من الجهتين */
+    text-align: right;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: #254F22;
+}
